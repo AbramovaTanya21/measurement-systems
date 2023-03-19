@@ -3,27 +3,34 @@
 Module ProgramM1
     Sub Main(args As String())
 
-        'Console.WriteLine("Введите 5 чисел:")
-        'Dim Inp(4) As Integer
-        'For i = 0 To 4
-        '    Inp(i) = Console.ReadLine()
-        'Next
-        'Console.WriteLine("Какое число искать?")
-        'Dim num As Integer = Console.ReadLine()
-        'Console.WriteLine(find(Inp, num))
-
-        Console.WriteLine("Введите 5 слов:")
-        Dim Str(4) As String
+        Console.WriteLine("Введите 5 чисел:")
+        Dim Inp(4) As Integer
         For i = 0 To 4
-            Str(i) = Console.ReadLine()
+            Inp(i) = Console.ReadLine()
         Next
-        Console.WriteLine("Какое слово искать?")
-        Dim word As String = Console.ReadLine()
-        Console.WriteLine(findStr(Str, word))
+        Console.WriteLine("Какое число искать?")
+        Dim num As Integer = Console.ReadLine()
+        Console.WriteLine(find(Inp, num))
+
+        'Console.WriteLine("Введите 5 слов:")
+        'Dim Str(4) As String
+        'For i = 0 To 4
+        '    Str(i) = Console.ReadLine()
+        'Next
+        'Console.WriteLine("Какое слово искать?")
+        'Dim word As String = Console.ReadLine()
+        'Console.WriteLine(findStr(Str, word))
 
         'Print(Inp)
         'Print(Str)
 
+        Dim Max1 As Integer = 0
+        For i = 0 To 4
+            Do While Inp(i) > Max1
+                Max1 = Inp(i)
+            Loop
+        Next
+        Console.WriteLine("{0}-максимальное значение", Max1)
     End Sub
     Sub BackPrint(List As Integer())
         For i = List.Length - 1 To 0 Step -1
