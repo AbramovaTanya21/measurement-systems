@@ -23,14 +23,16 @@ Module ProgramM1
 
         'Print(Inp)
         'Print(Str)
+        Dim n As Integer = Max1(Inp)
+        Console.WriteLine("inp({0})={1}", n, Inp(n))
 
-        Dim Max1 As Integer = 0
-        For i = 0 To 4
-            Do While Inp(i) > Max1
-                Max1 = Inp(i)
-            Loop
+        Dim Min1 As Integer = Inp(0)
+        For i = 0 To Inp.Length - 1
+            If Inp(i) < Min1 Then
+                Min1 = Inp(i)
+            End If
         Next
-        Console.WriteLine("{0}-максимальное значение", Max1)
+        Console.WriteLine("{0}-минимальное значение", Min1)
     End Sub
     Sub BackPrint(List As Integer())
         For i = List.Length - 1 To 0 Step -1
@@ -71,9 +73,14 @@ Module ProgramM1
         Next
         findStr = -1
     End Function
+    Function Max1(List As Integer()) As Integer
 
-
-
-
-
+        Max1 = 0
+        For i = 0 To List.Length - 1
+            If List(i) > List(Max1) Then
+                Max1 = i
+            End If
+        Next
+        Console.WriteLine("{0}-максимальное значение", Max1)
+    End Function
 End Module
