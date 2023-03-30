@@ -5,7 +5,7 @@ Module ProgramM1
 
         Console.WriteLine("Введите 5 чисел:")
         Dim Inp(4) As Integer
-        For i = 0 To 4
+        For i = 0 To Inp.Length - 1
             Inp(i) = Console.ReadLine()
         Next
         Console.WriteLine("Какое число искать?")
@@ -24,15 +24,14 @@ Module ProgramM1
         'Print(Inp)
         'Print(Str)
         Dim n As Integer = Max1(Inp)
-        Console.WriteLine("inp({0})={1}", n, Inp(n))
+        Console.WriteLine("Max({0})={1}", n, Inp(n))
 
-        Dim Min1 As Integer = Inp(0)
-        For i = 0 To Inp.Length - 1
-            If Inp(i) < Min1 Then
-                Min1 = Inp(i)
-            End If
-        Next
-        Console.WriteLine("{0}-минимальное значение", Min1)
+        Dim m As Integer = Min1(Inp)
+        Console.WriteLine("Min({0})={1}", m, Inp(m))
+
+        Add(Inp, 999, 2)
+        Console.WriteLine(Inp)
+
     End Sub
     Sub BackPrint(List As Integer())
         For i = List.Length - 1 To 0 Step -1
@@ -74,13 +73,28 @@ Module ProgramM1
         findStr = -1
     End Function
     Function Max1(List As Integer()) As Integer
-
         Max1 = 0
         For i = 0 To List.Length - 1
             If List(i) > List(Max1) Then
                 Max1 = i
             End If
         Next
-        Console.WriteLine("{0}-максимальное значение", Max1)
     End Function
+    Function Min1(List As Integer()) As Integer
+        Min1 = 0
+        For i = 0 To List.Length - 1
+            If List(i) < List(Min1) Then
+                Min1 = i
+            End If
+        Next
+    End Function
+
+    Sub Add(ByRef List As Integer(), value As Integer, index As Integer)
+        If index < 0 Or index > List.Length Then Exit Sub
+        ReDim Preserve List(List.Length)
+        For i = List.Length - 1 To index + 1 Step -1
+            List(i) = List(i - 1)
+        Next
+        List(index) = value
+    End Sub
 End Module
