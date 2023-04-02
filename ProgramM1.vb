@@ -1,6 +1,4 @@
-﻿Imports System
-
-Module ProgramM1
+﻿Module ProgramM1
     Sub Main(args As String())
 
         Console.WriteLine("Введите 5 чисел:")
@@ -8,9 +6,9 @@ Module ProgramM1
         For i = 0 To Inp.Length - 1
             Inp(i) = Console.ReadLine()
         Next
-        Console.WriteLine("Какое число искать?")
-        Dim num As Integer = Console.ReadLine()
-        Console.WriteLine(find(Inp, num))
+        'Console.WriteLine("Какое число искать?")
+        'Dim num As Integer = Console.ReadLine()
+        'Console.WriteLine(find(Inp, num))
 
         'Console.WriteLine("Введите 5 слов:")
         'Dim Str(4) As String
@@ -29,8 +27,11 @@ Module ProgramM1
         Dim m As Integer = Min1(Inp)
         Console.WriteLine("Min({0})={1}", m, Inp(m))
 
-        Add(Inp, 999, 2)
-        Console.WriteLine(Inp)
+        'Add(Inp, 999, 2)
+        'Print(Inp)
+
+        Delete(Inp, 2)
+        Print(Inp)
 
     End Sub
     Sub BackPrint(List As Integer())
@@ -97,4 +98,19 @@ Module ProgramM1
         Next
         List(index) = value
     End Sub
+
+    Sub Delete(ByRef List As Integer(), index As Integer)
+        If index < 0 Or index > List.Length Then Exit Sub
+        For i = List.Length - 1 To index + 1 Step -1
+            List(i) = List(i - 1)
+        Next
+        List(index) = 0
+    End Sub
+
 End Module
+
+
+
+
+
+
