@@ -101,13 +101,14 @@
 
     Sub Delete(ByRef List As Integer(), index As Integer)
         If index < 0 Or index > List.Length Then Exit Sub
-        For i = List.Length - 1 To index + 1 Step -1
-            List(i) = List(i - 1)
+        ReDim Preserve List(List.Length - 2)
+        For i = index To List.Length - 1
+            List(i) = List(index + i)
         Next
         List(index) = 0
+
     End Sub
 
-End Module
 
 
 
