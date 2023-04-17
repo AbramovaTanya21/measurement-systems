@@ -1,37 +1,50 @@
 ﻿Module ProgramM1
     Sub Main(args As String())
 
-        Console.WriteLine("Введите 5 чисел:")
-        Dim Inp(4) As Integer
-        For i = 0 To Inp.Length - 1
-            Inp(i) = Console.ReadLine()
-        Next
+        'Console.WriteLine("Введите 5 чисел:")
+        'Dim Inp(4) As Integer
+        'For i = 0 To Inp.Length - 1
+        '    Inp(i) = Console.ReadLine()
+        'Next
         'Console.WriteLine("Какое число искать?")
         'Dim num As Integer = Console.ReadLine()
         'Console.WriteLine(find(Inp, num))
 
-        'Console.WriteLine("Введите 5 слов:")
-        'Dim Str(4) As String
-        'For i = 0 To 4
-        '    Str(i) = Console.ReadLine()
-        'Next
+        Console.WriteLine("Введите 5 слов:")
+        Dim Str(4) As String
+        For i = 0 To Str.Length - 1
+            Str(i) = Console.ReadLine()
+        Next
         'Console.WriteLine("Какое слово искать?")
         'Dim word As String = Console.ReadLine()
         'Console.WriteLine(findStr(Str, word))
 
         'Print(Inp)
         'Print(Str)
-        Dim n As Integer = Max1(Inp)
-        Console.WriteLine("Max({0})={1}", n, Inp(n))
+        'Dim n As Integer = Max1(Inp)
+        'Console.WriteLine("Max({0})={1}", n, Inp(n))
 
-        Dim m As Integer = Min1(Inp)
-        Console.WriteLine("Min({0})={1}", m, Inp(m))
+        'Dim m As Integer = Min1(Inp)
+        'Console.WriteLine("Min({0})={1}", m, Inp(m))
+
+        '    m = Min1(Str, 1)
+        'If m > 1 Then
+
+        '    Dim d As String = Str(1)
+        '    Str(1) = Str(m)
+        '    Str(m) = d
+        'End If
+
+        'Console.WriteLine("Min({0})={1}", m, Str(m))
 
         'Add(Inp, 999, 2)
         'Print(Inp)
 
-        Delete(Inp, 2)
-        Print(Inp)
+        'Delete(Str, 0)
+        'Delete(Str, 1)
+
+        Dessort(Str)
+        Print(Str)
 
     End Sub
     Sub BackPrint(List As Integer())
@@ -81,9 +94,17 @@
             End If
         Next
     End Function
-    Function Min1(List As Integer()) As Integer
+    Function Min1(List As Integer(), Start As Integer) As Integer
         Min1 = 0
-        For i = 0 To List.Length - 1
+        For i = Start To List.Length - 1
+            If List(i) < List(Min1) Then
+                Min1 = i
+            End If
+        Next
+    End Function
+    Function Min1(List As String(), Optional Start As Integer = 0) As Integer
+        Min1 = Start
+        For i = Start + 1 To List.Length - 1
             If List(i) < List(Min1) Then
                 Min1 = i
             End If
@@ -101,14 +122,34 @@
 
     Sub Delete(ByRef List As Integer(), index As Integer)
         If index < 0 Or index > List.Length Then Exit Sub
-        ReDim Preserve List(List.Length - 2)
+
         For i = index To List.Length - 1
+            List(index) = 0
             List(i) = List(index + i)
         Next
-        List(index) = 0
+        ReDim Preserve List(List.Length - 2)
+    End Sub
+    Sub Delete(ByRef List As String(), index As Integer)
+        If index < 0 Or index > List.Length - 1 Then Exit Sub
+
+        For i = index To List.Length - 2
+            List(i) = List(i + 1)
+        Next
+        ReDim Preserve List(List.Length - 2)
+    End Sub
+    Sub Dessort(List As String())
+
+        For Start = 0 To List.Length - 1
+            Dim m As Integer = Min1(List, Start)
+            If m > Start Then
+                Dim d As String = List(Start)
+                List(Start) = List(m)
+                List(m) = d
+            End If
+        Next
 
     End Sub
-
+End Module
 
 
 
