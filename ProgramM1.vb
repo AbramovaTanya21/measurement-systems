@@ -1,4 +1,10 @@
-﻿Module ProgramM1
+﻿Imports System.Buffers
+
+Module ProgramM1
+    Enum SortTipe
+        Ascending
+        Descending
+    End Enum
     Sub Main(args As String())
 
         'Console.WriteLine("Введите 5 чисел:")
@@ -43,7 +49,8 @@
         'Delete(Str, 0)
         'Delete(Str, 1)
 
-        Dessort(Str)
+        'Dessort(Str)
+        Bubblesort(Str)
         Print(Str)
 
     End Sub
@@ -122,24 +129,23 @@
 
     Sub Delete(ByRef List As Integer(), index As Integer)
         If index < 0 Or index > List.Length Then Exit Sub
-
         For i = index To List.Length - 1
             List(index) = 0
             List(i) = List(index + i)
         Next
         ReDim Preserve List(List.Length - 2)
     End Sub
+
     Sub Delete(ByRef List As String(), index As Integer)
         If index < 0 Or index > List.Length - 1 Then Exit Sub
-
         For i = index To List.Length - 2
             List(i) = List(i + 1)
         Next
         ReDim Preserve List(List.Length - 2)
     End Sub
-    Sub Dessort(List As String())
 
-        For Start = 0 To List.Length - 1
+    Sub Dessort(List As String())
+        For Start = 0 To List.Length - 2
             Dim m As Integer = Min1(List, Start)
             If m > Start Then
                 Dim d As String = List(Start)
@@ -147,8 +153,25 @@
                 List(m) = d
             End If
         Next
-
     End Sub
+
+    Sub Bubblesort(List As String(), Optional Dir As SortTipe = SortTipe.Ascending)
+        Dim Buf As String
+        For j = 0 To List.Length - 2
+            For i = 0 To List.Length - 2 - j
+                If List(i) > List(i + 1) Then
+                    Buf = List(i)
+                    List(i) = List(i + 1)
+                    List(i + 1) = Buf
+                End If
+            Next
+        Next
+    End Sub
+
+
+
+
+
 End Module
 
 
