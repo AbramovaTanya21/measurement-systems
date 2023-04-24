@@ -50,7 +50,7 @@ Module ProgramM1
         'Delete(Str, 1)
 
         'Dessort(Str)
-        Bubblesort(Str)
+        Bubblesort(Str, SortTipe.Ascending)
         Print(Str)
 
     End Sub
@@ -157,21 +157,30 @@ Module ProgramM1
 
     Sub Bubblesort(List As String(), Optional Dir As SortTipe = SortTipe.Ascending)
         Dim Buf As String
-        For j = 0 To List.Length - 2
-            For i = 0 To List.Length - 2 - j
-                If List(i) > List(i + 1) Then
-                    Buf = List(i)
-                    List(i) = List(i + 1)
-                    List(i + 1) = Buf
-                End If
-            Next
-        Next
+        Select Case Dir
+            Case SortTipe.Ascending
+                For j = 0 To List.Length - 2
+                    For i = 0 To List.Length - 2 - j
+                        If List(i) > List(i + 1) Then
+                            Buf = List(i)
+                            List(i) = List(i + 1)
+                            List(i + 1) = Buf
+                        End If
+                    Next
+                Next
+            Case SortTipe.Descending
+
+                For j = 0 To List.Length - 2
+                    For i = 0 To List.Length - 2 - j
+                        If List(i) < List(i + 1) Then
+                            Buf = List(i)
+                            List(i) = List(i + 1)
+                            List(i + 1) = Buf
+                        End If
+                    Next
+                Next
+        End Select
     End Sub
-
-
-
-
-
 End Module
 
 
